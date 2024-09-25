@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&display=swap');
+
+*{
+ padding: 0;
+ margin: 0;
+ box-sizing: border-box;
+ font-family: 'Poppins', sans-serif;
+}
+:root{
+ --bg-color: #ffffff;
+ --second-color: #272727;
+ --black-color: #272626;
+ --icons-bg: #f4f4f4;
+}
+body{
+ background: var(--bg-color);
+ width: 100%;
+ height: 100%;
+ min-height: 100dvh;
+ overflow: hidden;
+}
+body.dark{
+ --bg-color: #262626;
+ --second-color: #eeeeee;
+ --black-color: #ffffff;
+ --icons-bg: #191919;
+}
+.wrapper{
+ width: 100%;
+ height: 100%;
+}
+.nav{
+ position: fixed;
+ top: 0;
+ width: 100%;
+ height: 100px;
+ display: flex;
+ justify-content: space-between;
+ padding: 0 6vw;
+ line-height: 100px;
+ background: var(--bg-color);
+ z-index: 100;
+}
+.nav_menu_btn{
+ display: none;
+}
+.close-menu{
+ display: none;
+}
+.nav_logo span{
+ font-size: 25px;
+ font-weight: 900;
+ font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+ color: #00a6ff;
+}
+.nav_logo h2{
+ font-size: 25px;
+ font-weight: 900;
+ font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+ color: var(--second-color);
+}
+.right_nav{
+ display: flex;
+ column-gap: 2vw;
+}
+.link_list{
+ display: flex;
+}
+.list{
+ position: relative;
+ list-style: none;
+ margin: 0 30px;
+}
+.list .link{
+ text-decoration: none;
+ font-weight: 500;
+ color: var(--black-color);
+}
+.fa-caret-down{
+ margin-left: 5px;
+ transition: .3s;
+}
+.list:hover .fa-caret-down{
+ transform: rotate(180deg);
+}
+.list:hover .description_box{
+ display: flex;
+}
+.description_box{
+ display: none;
+ flex-wrap: wrap;
+ gap: 5px;
+ position: fixed;
+ top: 100px;
+ background: #efefff;
+ opacity: 0.7;
+ width: 400px;
+ min-width: 300px;
+ line-height: 30px;
+ padding: 20px;
+ border-radius: 10px;
+ box-shadow: 1px 6px 10px 2px rgb(34, 34, 34);
+ animation: slideUp .3s;
+}
+.description_box::before{
+ content: "";
+ position: absolute;
+ top: -10px;
+ width: 20px;
+ height: 20px;
+ background: #efefff;
+ opacity: 0.7;
+ transform: rotate(45deg);
+}
+@keyframes slideUp {
+ from{
+     top: 130px;
+ }
+ top{
+     top: 100px;
+ }
+}
+.content-title{
+font-size: 18px;
+font-weight: 600;
+color: #444444;
+border-bottom: 1px solid #ddd;
+padding-bottom: 10px;
+margin-bottom: 15px;
+}
+.skills-label{
+ font-size: 15px;
+ background: rgb(0, 0, 0);
+ color: #ffffff;
+ border-radius: 20%;
+ padding: 2px 10px;
+}
+.services_list{
+ padding-inline: 20px;
+ margin-top: 10px;
+}
+.about_box{
+ right: 170px;
+}
+.list:last-child .description_box::before{
+ left: 45%;
+}
+.btn{
+ text-decoration: none;
+ font-size: 15px;
+ background: #00c3ff;
+ color: #ffffff;
+ padding: 10px 20px;
+ border-radius: 20%;
+ cursor: pointer;
+}
+.mode{
+ display: flex;
+ align-items: center;
+}
+.moon-sun{
+ position: relative;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ height: 40px;
+ width: 40px;
+ background: #f5f5f5;
+ border-radius: 50%;
+ cursor: pointer;
+}
+.moon-sun :is(#moon,#sun){
+ position: absolute;
+ color: #444444;
+ transition: .2s ease-in-out;
+}
+#sun{
+ opacity: 0;
+}
+body.dark #sun{
+ opacity: 1;
+}
+body.dark #moon{
+ opacity: 0;
+}
+.modal{
+ display: none;
+ position: fixed;
+ left: 0;
+ top: 0;
+ padding-top: 150px;
+ width: 100%;
+ height: 100%;
+ min-height: 100%;
+ min-width: 100%;
+ background-color: rgb(0, 0, 0);
+ background-color: rgba(0, 0, 0, 0.4);
+ overflow: auto;
+ z-index: 120;
+}
+.modal-content{
+ background: #ffffff;
+ margin: auto;
+ width: 500px;
+ padding: 20px;
+ border-radius: 10px;
+}
+.close{
+ color: #aaa;
+ font-size: 18px;
+ float: right;
+}
+.close :is(:hover,:focus){
+ color: #444444;
+ cursor: pointer;
+}
+.row{
+ display: flex;
+}
+.hero{
+ position: relative;
+ width: 100%;
+ min-height: 100vh;
+}
+.col{
+ display: flex;
+ width: 50%;
+}
+.col-1{
+ align-items: center;
+ padding-inline: 5vw 50px;
+ color: var(--second-color);
+}
+.social_icons{
+ position: relative;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ margin-right: 30px;
+ border-radius: 50px;
+ background: var(--icons-bg);
+}
+.icon{
+ display: flex;
+ align-items: center;
+ justify-content: center;
+ width: 40px;
+ height: 40px;
+ margin-block: 5px;
+ color: var(--second-color);
+ cursor: pointer;
+ z-index: 1;
+}
+.icon:nth-child(2){
+ margin-top: 0;
+}
+.icon:last-child{
+ margin-bottom: 0;
+}
+.icon:hover{
+ color:#00c3ff;
+}
+.icon_circle{
+ position: absolute;
+ top: 20px;
+ left: 20px;
+ transform: translate(-50%, -50%);
+ width: 40px;
+ height: 40px;
+ border: 2px solid #0b7dda;
+ border-radius: 50%;
+ animation: iconSlide 5s ease 1s infinite alternate;
+}
+@keyframes iconSlide {
+ 25%{
+     border: 2px solid rgb(0, 128, 255);
+     top: 20px;
+ }
+ 50%{
+     border: 2px solid #ff0000;
+     top: 70px;
+ }
+ 75%{
+     border: 2px solid var(--second-color);
+     top: 115px;
+ }
+ 100%{
+     border: 2px solid rgb(255, 87, 143);
+     top: 160px;
+ }
+}
+.social_icons:hover .icon_circle{
+ animation-play-state: paused;
+}
+.hero_box{
+ display: flex;
+ flex-direction: column;
+}
+.hero_box .hello{
+ font-size: 25px;
+ font-weight: 500;
+ margin-bottom: 10px;
+}
+.hero_box .job{
+ font-size: 45px;
+ font-weight: 700;
+ color: var(--second-color);
+ margin-bottom: 10px;
+}
+.hero_box .hero_btn{
+ margin-top: 30px;
+}
+.hero_box button{
+ padding: 10px 20px;
+ border-radius: 20%;
+ border: none;
+ cursor: pointer;
+}
+.btn_1{
+ background:#00c3ff;
+ color: #ffffff;
+ box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+}
+.btn_2{
+ margin-left: 1vw;
+ background: #ffffff;
+ box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+}
+.btn_2 a{
+ text-decoration: none;
+ color: var(--black_color);
+}
+.col-2{
+ position: relative;
+}
+.circle img{
+ position: absolute;
+ right: 0;
+ bottom: 0;
+ width: 590px;
+ animation: circleZoom 5s infinite;
+}
+@keyframes circleZoom {
+ 50%{
+     width: 600px;
+ }
+}
+.hero-image{
+ z-index: 50;
+}
+.hero-image img{
+ position: absolute;
+ right: 250px;
+ bottom: 0;
+ width: 350px;
+}
+.clients{
+ font-size: 15px;
+ position: absolute;
+ left: -100px;
+ bottom: 90px;
+ display: flex;
+ align-items: center;
+ gap: 20px;
+ width: 200px;
+ height: 80px;
+ padding: 0 20px;
+ background: rgba(255, 255, 255, 0.7);
+ border-radius: 10px;
+ box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.1);
+ z-index: 60;
+}   
+.experience{
+ font-size: 15px;
+ position: absolute;
+ right: 100px;
+ bottom: 320px;
+ display: flex;
+ align-items: center;
+ gap: 20px;
+ width: 230px;
+ height: 80px;
+ padding: 0 20px;
+ background: rgba(255, 255, 255, 0.737);
+ border-radius: 10px;
+ box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.362);
+ z-index: 60;
+} 
+.clients i, .experience i{
+ font-size: 20px;
+}
+@media (max-width: 1084px) {
+ .nav_menu.responsive{
+     position: fixed;
+     left: 0;
+ }
+ .nav_menu{
+     position: fixed;
+     left: -100%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 80%;
+     max-width: 600px;
+     height: 100%;
+     background-color: rgba(211, 211, 211, 0.2);
+     backdrop-filter: blur(20px);
+     box-shadow: 3px 0px 10px rgba(0, 0, 0, 0.2);
+     transition: all .2s ease;
+     z-index: 100;
+ }
+ .link_list{
+     flex-direction: column;
+ }
+ .list:hover .description_box{
+     display: none;
+ }
+ .nav_menu_btn{
+     display: flex;
+     align-items: center;
+ }
+ .nav_menu_btn .fa-bars{
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     width: 45px;
+     height: 45px;
+     background: var(--second-color);
+     color: var(--bg-color);
+     border-radius: 50%;
+     cursor: pointer;
+ }
+ .close-menu{
+     display: block;
+     position: absolute;
+     top: 0px;
+     right: 30px;
+ }
+ .close-menu i{
+     font-size: 20px;
+     cursor: pointer;
+ }
+ .skills-box{
+     display: flex;
+     flex-wrap: wrap;
+     gap: 5px;
+ }
+ .hero-image img{
+     right: 100px;
+     width: 290px;
+ }
+ .circle{
+     width: 480px;
+ }
+ .circle img{
+     width: 480px;
+ }
+ @keyframes circleZoom {
+     50%{
+         width: 460px;
+     }
+ }
+ .experience{
+     right: 20px;
+     top: 350px;
+ }
+}
+@media (max-width: 870px) {
+ body{
+     overflow: auto;
+     overflow-x: hidden;
+     width: 100%;
+ }
+ .row{
+     flex-direction: column;
+ }
+ .col-1{
+     position: relative;
+     top: 150px;
+     padding-inline: 8vw;
+     width: 100%;
+     z-index: 10;
+ }
+ .col-2{
+     position: relative;
+     width: 100%;
+     min-height: 600px;
+ }
+ .hero-image img{
+     right: 100px;
+     width: 280px;
+ }
+ .circle, .circle img{
+     width: 450px;
+ }
+ @keyframes circleZoom {
+     50%{
+         width: 430px;
+     }
+ }
+ .clients{
+     left: 50px;
+     bottom: 50px;
+ }
+}
+@media (max-width: 574px) {
+ .nav_logo span{
+     font-size: 26px;
+ }
+ .nav_button .btn :not(i){
+     display: none;
+ }
+ .modal-content{
+     width: 90%;
+ }
+ .col-1{
+     padding-inline: 7vw;
+ }
+ .hero-image img{
+     right: 20px;
+     width: 250px;
+ }
+ .circle img{
+     width: 380px;
+ }
+ @keyframes circleZoom {
+     50%{
+         width: 360px;
+     }
+ }
+ .social_icons{
+     margin-right: 20px;
+ }
+ .experience{
+     top: 350px;
+ }
+}
+@media (max-width: 394px) {
+ .nav_button .btn{
+     display: none;
+ }
+}
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   <!-- Modal --> 
+<div class="modal" id="myModal">
+<div class="modal-content">
+<span class="close"><i class="fa fa-times"></i></span>
+<div class="content-title"><span>Skills</span></div>
+<div class="skills-box">
+   <span class="skills-label">HTML</span>
+   <span class="skills-label">CSS</span>
+   <span class="skills-label">JavaScript</span>
+   <span class="skills-label">React</span>
+   <span class="skills-label">Bootstrap</span>
+   <span class="skills-label">C++</span>
+   <span class="skills-label">MySQL</span>
+</div>
+</div>
+</div>
+<div class="modal" id="myModal1">
+<div class="modal-content">
+   <span class="close"><i class="fa fa-times"></i></span>
+<div class="content-title">
+   <span>Service We Offer</span>
+</div>
+<div class="desc_content">
+   <p>I work together with my team to provide the best services on:</p>
+     <ul class="services_list">
+       <li>Software Development</li>
+       <li>Web Development</li>
+       <li>UI/UX Designer</li>
+       <li>Graphic Designer</li>
+     </ul>
+</div>
+</div>
+</div>
+<div class="modal" id="myModal2">
+<div class="modal-content">
+   <span class="close"><i class="fa fa-times"></i></span>
+<div class="content-title">
+   <span>About Me</span>
+</div>
+   <p>I am a creative front-end web developer skilled in transforming design ideas into functional, 
+      visually appealing websites and applications. With expertise in HTML, CSS, and JavaScript, 
+      I focus on responsive design, performance optimization, and cross-browser compatibility.</p>
+</div>
+</div>
+   <!--  Wrapper -->
+<div class="wrapper">
+   <nav class="nav">
+<div class="nav_logo"><h2>FRONTEND<span> X.</span></h2></div>
+<div class="right_nav">
+<div class="nav_menu" id="navMenu">
+<ul class="link_list">
+<div class="close-menu">
+  <i class="fa fa-times" onclick="menuClose()"></i>
+</div>
+  <li class="list">
+   <a href="#" class="link">Home</a>
+  </li>
+<li class="list">
+   <a href="#myModal" class="link" id="myBtn">Skills <i class="fa-solid fa-caret-down"></i></a>
+<div class="description_box">
+<div class="link_description" id="myDescription">
+<div class="content-title"><span>I'm Skilled In</span></div>
+<div class="desc_content">
+   <span class="skills-label">HTML</span>
+   <span class="skills-label">CSS</span>
+   <span class="skills-label">JavaScript</span>
+   <span class="skills-label">React</span>
+   <span class="skills-label">Bootstrap</span>
+   <span class="skills-label">C++</span>
+   <span class="skills-label">MySQL</span>
+</div>
+</div>
+</div>
+</li>
+<li class="list">
+  <a href="#myModal1" class="link" id="myBtn">Services <i class="fa-solid fa-caret-down"></i></a>
+<div class="description_box">
+<div class="link_description" id="myDescription">
+<div class="content-title"><span>Our Service</span></div>
+<div class="desc_content">
+   <p>I work together with my team to provide the best services on:</p>
+    <ul class="services_list">
+     <li>Software Development</li>
+     <li>Web Development</li>
+     <li>UI/UX Designer</li>
+     <li>Graphic Designer</li>
+    </ul>
+</div>
+</div>
+</div>
+</li>
+<li class="list">
+   <a href="#myModal2" class="link" id="myBtn">About <i class="fa-solid fa-caret-down"></i></a>
+<div class="description_box about_box">
+<div class="link_description" id="myDescription">
+<div class="content-title"><span>About Me</span></div>
+<div class="desc_content">
+   <p>I am a creative front-end web developer skilled in transforming design ideas into functional, 
+       visually appealing websites and applications. With expertise in HTML, CSS, and JavaScript, 
+       I focus on responsive design, performance optimization, and cross-browser compatibility.</p>
+</div>
+</div>
+</div>
+</li>                  
+</ul>
+</div>
+<div class="nav_button">
+   <a href="#" class="btn"><i class="fa fa-phone"></i> <span>Contact Me</span></a>
+</div>
+<div class="mode">
+<div class="moon-sun" id="toggle-switch">
+   <i class="fa fa-moon" id="moon"></i>
+   <i class="fa fa-sun" id="sun"></i>
+</div>
+</div>
+<div class="nav_menu_btn">
+   <i class="fa fa-bars" onclick="myMenuFunction()"></i>
+</div>
+</div>
+</nav>        
+        <!--  Main  -->
+<main class="main">
+<div class="row hero">
+<div class="col col-1">
+<div class="social_icons">
+<div class="icon_circle"></div>
+   <a href="https://www.linkedin.com/in/roshanj45" target="_blank" style="text-decoration: none;" rel="noopener noreferrer">
+       <i class="fa-brands fa-linkedin-in icon"></i>
+   </a>
+   <a href="https://www.youtube.com/@roshanjadhav8597" target="_blank" style="text-decoration: none;" rel="noopener noreferrer">
+       <i class="fa-brands fa-youtube icon"></i>
+   </a>
+   <a href="https://github.com/RoshanJ45" target="_blank" style="text-decoration: none;" rel="noopener noreferrer">
+       <i class="fa-brands fa-github icon"></i>
+   </a>
+   <a href="https://www.instagram.com/roshan.jadhav1262" target="_blank" style="text-decoration: none;" rel="noopener noreferrer">
+       <i class="fa-brands fa-instagram icon"></i>
+   </a>
+</div>
+               <!--  Hero  -->
+<div class="hero_box">
+<div class="hello"><p>Hey, I Am</p></div>
+<div class="job">
+   <span class="Text"></span>
+</div>
+<div class="hero_description">
+   <p>I'm a web Designer with extensive experience for over 4 years, expertise
+      frontend developer with a passion for creating visually stunning and user-friendly websites.</p>
+</div>
+<div class="hero_btn">
+   <button class="btn_1">Hire Me</button>
+   <button class="btn_2"><a href="#">Download CV</a></button>
+</div>
+</div>
+</div>
+<div class="col col-2">
+<div class="circle"><img src="bgr.png" alt=""></div>
+<div class="hero-image"><img src="pro.png" alt=""></div>
+<div class="clients">
+   <i class="fa-regular fa-user"></i>
+<div class="clients-content">
+   <span>5k+</span>
+   <p>Project Deliver</p>
+</div>
+</div>
+<div class="experience">
+   <i class="fa-regular fa-star"></i>
+<div class="xp-content">
+   <span>4+ Year's</span>
+   <p>of Experience</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+          <!-- Js -->
+<script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+ <script>
+   var typingEffect = new Typed(".Text",{
+       strings: ["Roshan","Developer"],
+       loop: true,
+       typeSpeed: 100,
+       backSpeed: 90,
+       backDelay: 2000
+    })
+ </script>
+<script src="script.js">
+    const body = document.querySelector("body"),
+toggleSwitch = document.getElementById("toggle-switch");
+toggleSwitch.addEventListener('click', () => {
+body.classList.toggle("dark");
+})      
+function myMenuFunction(){
+var navMenu = document.getElementById('navMenu');
+if (navMenu.className === "nav_menu") {
+navMenu.className += " responsive";
+}
+else{
+navMenu.className = "nav_menu";
+}}
+function menuClose(){
+var navMenu = document.getElementById('navMenu');
+navMenu.className = "nav_menu";
+}
+var modals = document.querySelectorAll(".modal");
+var btn = document.querySelectorAll("a.link");
+var closeBtn = document.getElementsByClassName("close");
+const mediaQuery = window.matchMedia("(max-width: 1084px)");
+function handleMediaQueryChange(event) {
+if (event.matches) {
+for(var i = 0; i < btn.length; i++) {
+    btn[i].onclick = function(e) {
+        e.preventDefault();
+        var modal = document.querySelector(e.target.getAttribute("href"));
+        modal.style.display = "block";
+    }
+}
+for(var i = 0; i < closeBtn.length; i++) {
+    closeBtn[i].onclick = function() {
+        for (var index in modals) {
+            if (typeof modals[index].style !== 'undefined') {
+                modals[index].style.display = "none";
+            }
+        }
+    }
+}
+window.onclick = function(event) {
+    if (event.target.classList.contains('modal')) {
+        for (var index in modals) {
+            if (typeof modals[index].style !== 'undefined') {
+                modals[index].style.display = "none";
+            }
+        }
+    }
+}
+}
+else{
+for(var i = 0; i < btn.length; i++) {
+    btn[i].onclick = function(e) {
+        e.preventDefault();
+        var modal = document.querySelector(e.target.getAttribute("href"));
+        modal.style.display = "none";
+      }
+    }
+  }
+}
+handleMediaQueryChange(mediaQuery)
+mediaQuery.addListener(handleMediaQueryChange)
+const navLink = document.querySelectorAll(".link");
+function linkAction(){
+const navMenu = document.getElementById("navMenu");
+navMenu.classList.remove("responsive");
+}
+navLink.forEach(n => n.addEventListener('click', linkAction));
+</script>
+</body>
+</html>
